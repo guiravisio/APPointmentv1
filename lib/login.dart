@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:appointment/home.dart';
 import 'package:flutter/material.dart';
 
 class FirstPageLogin extends StatefulWidget {
@@ -16,7 +17,7 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
         child: Container(
             width: double.infinity,
             height: double.infinity,
-            color: Colors.blueGrey.shade800,
+            color: Color.fromARGB(255, 17, 66, 88),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -25,12 +26,12 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
                   Icon(
                     Icons.class__outlined,
                     color: Color.fromARGB(255, 255, 95, 2),
-                    size: 220.0,
+                    size: 180.0,
                   ),
                   Text(
                     'Logo da Escola',
                     style: TextStyle(
-                      fontSize: 40.0,
+                      fontSize: 20.0,
                       color: Color.fromARGB(255, 255, 95, 2),
                       fontWeight: FontWeight.bold,
                     ),
@@ -40,7 +41,7 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.75,
-                    height: MediaQuery.of(context).size.height * 0.5,
+                    height: MediaQuery.of(context).size.height * 0.4,
                     color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -73,11 +74,46 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
                               labelText: 'Senha',
                               border: OutlineInputBorder(),
                             ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Home()),
+                              );
+                            },
+                            child: const Text('Entrar'),
+                            style: ElevatedButton.styleFrom(
+                                primary: Color.fromARGB(255, 255, 95, 2),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 50, vertical: 20),
+                                textStyle: TextStyle(
+                                  fontSize: 20,
+                                )),
                           )
                         ],
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 2,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    color: Colors.white,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Esqueceu sua senha?',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.blueGrey.shade700,
+                      ),
+                    ),
+                  )
                 ],
               ),
             )));
