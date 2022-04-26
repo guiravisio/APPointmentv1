@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "59139694637",
+    "project_id": "appointment-fatec",
+    "storage_bucket": "appointment-fatec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59139694637:android:d22578993d4103cad018a4",
+        "android_client_info": {
+          "package_name": "net.codex.fluttersignin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59139694637-jn1edch83hhgu7ivnr50uofrf3elps03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcSkjRE1eUtRsBlSMeatwzmJln3hiAR5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59139694637-jn1edch83hhgu7ivnr50uofrf3elps03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

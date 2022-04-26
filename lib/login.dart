@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:appointment/home.dart';
+import 'package:appointment/register.dart';
 import 'package:flutter/material.dart';
 
 class FirstPageLogin extends StatefulWidget {
@@ -42,7 +43,10 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.75,
                     height: MediaQuery.of(context).size.height * 0.4,
-                    color: Colors.white,
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -78,21 +82,47 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
                           SizedBox(
                             height: 20,
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Home()),
-                              );
-                            },
-                            child: const Text('Entrar'),
-                            style: ElevatedButton.styleFrom(
-                                primary: Color.fromARGB(255, 255, 95, 2),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 50, vertical: 20),
-                                textStyle: TextStyle(
-                                  fontSize: 20,
-                                )),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Home()),
+                                  );
+                                },
+                                child: const Text('Entrar'),
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color.fromARGB(255, 255, 95, 2),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 50, vertical: 20),
+                                    textStyle: TextStyle(
+                                      fontSize: 20,
+                                    )),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Register()),
+                                  );
+                                },
+                                child: const Text('Cadastre-se'),
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color.fromARGB(255, 23, 238, 253),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 30, vertical: 20),
+                                    textStyle: TextStyle(
+                                      fontSize: 20,
+                                    )),
+                              )
+                            ],
                           )
                         ],
                       ),
@@ -104,14 +134,20 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.75,
                     height: MediaQuery.of(context).size.height * 0.1,
-                    color: Colors.white,
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
                     alignment: Alignment.center,
-                    child: Text(
-                      'Esqueceu sua senha?',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.blueGrey.shade700,
-                      ),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FirstPageLogin()),
+                        );
+                      },
+                      child: Text('Esqueceu sua senha?'),
                     ),
                   )
                 ],
