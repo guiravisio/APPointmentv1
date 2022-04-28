@@ -1,14 +1,12 @@
-import 'package:appointment/about.dart';
-import 'package:appointment/aulafutura.dart';
 import 'package:flutter/material.dart';
-import 'aulawidget.dart';
+import 'home.dart';
 import 'login.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Sobre extends StatefulWidget {
+  const Sobre({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Sobre> createState() => _SobreState();
 }
 
 enum MenuItem {
@@ -17,7 +15,7 @@ enum MenuItem {
   sair,
 }
 
-class _HomeState extends State<Home> {
+class _SobreState extends State<Sobre> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +25,7 @@ class _HomeState extends State<Home> {
             color: Color.fromARGB(255, 255, 95, 2),
             size: 30.0,
           ),
-          title: Text('Início'),
+          title: Text('Sobre'),
           backgroundColor: Color.fromARGB(255, 0, 6, 97),
           actions: [
             PopupMenuButton(
@@ -63,31 +61,6 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 20,
             ),
-            Text(
-              "Próximas aulas",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-            ),
-            const AulaWidget(
-                "Aula 4", " Descrição aula 4", "19/02/2022", "19:00"),
-            const AulaWidget(
-                "Aula 5", " Descrição aula 5", "26/02/2022", "19:00"),
-            const AulaWidget(
-                "Aula 6", " Descrição aula 6", "05/03/2022", "19:00"),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Aulas disponíveis para agendar",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-            ),
-            const AulaDispo("Aula 7", "Descrição da aula 7"),
-            const AulaDispo("Aula 8", "Descrição da aula 8"),
           ]),
         ),
       ),
