@@ -131,6 +131,9 @@ class _SobreState extends State<Sobre> {
                       color: Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Image.asset("assets/images/gui.jpg"),
                   SizedBox(
                     height: 20,
@@ -142,6 +145,9 @@ class _SobreState extends State<Sobre> {
                       fontSize: 18.0,
                       color: Color.fromARGB(255, 255, 255, 255),
                     ),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Image.asset("assets/images/luan.jpg"),
                 ],
