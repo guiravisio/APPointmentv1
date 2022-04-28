@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:appointment/about.dart';
 import 'package:appointment/aulafutura.dart';
 import 'package:flutter/material.dart';
@@ -33,17 +35,20 @@ class _HomeState extends State<Home> {
             PopupMenuButton(
                 onSelected: (value) {
                   if (value == MenuItem.inicio) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const Home(),
-                    ));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Home()),
+                    );
                   } else if (value == MenuItem.sobre) {
-                    Navigator.of(context).pop(MaterialPageRoute(
-                      builder: (context) => const Sobre(),
-                    ));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Sobre()),
+                    );
                   } else if (value == MenuItem.sair) {
-                    Navigator.of(context).pop(MaterialPageRoute(
-                      builder: (context) => const FirstPageLogin(),
-                    ));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FirstPageLogin()),
+                    );
                   }
                 },
                 itemBuilder: (context) => [
