@@ -97,13 +97,13 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Color.fromARGB(255, 255, 95, 2),
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: 50, vertical: 20),
+                                        horizontal: 20, vertical: 20),
                                     textStyle: TextStyle(
                                       fontSize: 20,
                                     )),
                               ),
                               SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
                               ElevatedButton(
                                 onPressed: () {
@@ -117,7 +117,7 @@ class _FirstPageLoginState extends State<FirstPageLogin> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Color.fromARGB(255, 23, 238, 253),
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 20),
+                                        horizontal: 20, vertical: 20),
                                     textStyle: TextStyle(
                                       fontSize: 20,
                                     )),

@@ -1,11 +1,19 @@
+import 'package:appointment/aulafutura.dart';
 import 'package:flutter/material.dart';
 import 'aulawidget.dart';
+import 'login.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
+}
+
+enum MenuItem {
+  inicio,
+  sobre,
+  sair,
 }
 
 class _HomeState extends State<Home> {
@@ -16,11 +24,35 @@ class _HomeState extends State<Home> {
           leading: Icon(
             Icons.class__outlined,
             color: Color.fromARGB(255, 255, 95, 2),
-            size: 20.0,
+            size: 30.0,
           ),
           title: Text('Início'),
           backgroundColor: Color.fromARGB(255, 0, 6, 97),
-          actions: []),
+          actions: [
+            PopupMenuButton(
+                onSelected: (value) {
+                  if (value == MenuItem.inicio) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Home(),
+                    ));
+                  } else if (value == MenuItem.sobre) {
+                    Navigator.of(context).pop(MaterialPageRoute(
+                      builder: (context) => const FirstPageLogin(),
+                    ));
+                  } else if (value == MenuItem.sair) {
+                    Navigator.of(context).pop(MaterialPageRoute(
+                      builder: (context) => const FirstPageLogin(),
+                    ));
+                  }
+                },
+                itemBuilder: (context) => [
+                      PopupMenuItem(
+                          value: MenuItem.inicio, child: Text("Início")),
+                      PopupMenuItem(
+                          value: MenuItem.sobre, child: Text("Sobre")),
+                      PopupMenuItem(value: MenuItem.sair, child: Text("Sair")),
+                    ])
+          ]),
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
@@ -42,7 +74,19 @@ class _HomeState extends State<Home> {
             const AulaWidget(
                 "Aula 5", " Descrição aula 5", "26/02/2022", "19:00"),
             const AulaWidget(
-                "Aula 6", " Descrição aula 6", "05/03/2022", "19:00")
+                "Aula 6", " Descrição aula 6", "05/03/2022", "19:00"),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Aulas disponíveis para agendar",
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+            ),
+            const AulaDispo("Aula 7", "Descrição da aula 7"),
+            const AulaDispo("Aula 8", "Descrição da aula 8"),
           ]),
         ),
       ),

@@ -37,7 +37,7 @@ class AulaWidget extends StatelessWidget {
             Container(
                 padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
                 width: 100,
-                height: 110,
+                height: 90,
                 decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Color.fromARGB(255, 2, 255, 78),
@@ -52,7 +52,7 @@ class AulaWidget extends StatelessWidget {
               width: 3,
             ),
             Container(
-              height: 110,
+              height: 90,
               decoration: new BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Color.fromARGB(255, 255, 95, 2),
