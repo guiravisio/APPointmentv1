@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 
-import 'login.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'pages/login.dart';
+import 'pages/register.dart';
+import 'pages/home.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'APPointment',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const FirstPageLogin(),
-    );
-  }
+      initialRoute: 'login',
+      routes: {
+        'login': (context) => const FirstPageLogin(),
+        'criar_conta': (context) => const Register(),
+        'principal': (context) => const Home(),
+      },
+    ),
+  );
 }

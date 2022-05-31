@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "59139694637",
-    "project_id": "appointment-fatec",
-    "storage_bucket": "appointment-fatec.appspot.com"
+    "project_number": "253700180927",
+    "project_id": "appointment-fatec-115dc",
+    "storage_bucket": "appointment-fatec-115dc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:59139694637:android:d22578993d4103cad018a4",
+        "mobilesdk_app_id": "1:253700180927:android:ac21199cfb177bc616af0a",
         "android_client_info": {
-          "package_name": "net.codex.fluttersignin"
+          "package_name": "com.example.appointment"
         }
       },
       "oauth_client": [
         {
-          "client_id": "59139694637-jn1edch83hhgu7ivnr50uofrf3elps03.apps.googleusercontent.com",
+          "client_id": "253700180927-bqfp9guljcn1lbhfkafqa2gear2st622.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCcSkjRE1eUtRsBlSMeatwzmJln3hiAR5g"
+          "current_key": "AIzaSyAprJlEY6GQJr0qtlqioGloq6hbi0dGRVA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "59139694637-jn1edch83hhgu7ivnr50uofrf3elps03.apps.googleusercontent.com",
+              "client_id": "253700180927-bqfp9guljcn1lbhfkafqa2gear2st622.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
