@@ -119,11 +119,11 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
           children: [
             campoTexto('Nome da aula', txtNomeAula),
             const SizedBox(height: 20),
-            campoTexto('Preço', txtDesc),
+            campoTexto('Descrição', txtDesc),
             const SizedBox(height: 40),
-            campoTexto('Preço', txtData),
+            campoTexto('Data', txtData),
             const SizedBox(height: 40),
-            campoTexto('Preço', txtHora),
+            campoTexto('Hora', txtHora),
             const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

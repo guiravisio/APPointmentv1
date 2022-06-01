@@ -7,6 +7,7 @@ import 'package:appointment/pages/widgets/aulafutura.dart';
 import 'package:flutter/material.dart';
 import 'package:appointment/pages/widgets/aulawidget.dart';
 import 'login.dart';
+import 'widgets/mensagem.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -93,60 +94,105 @@ class _HomeState extends State<Home> {
               ],
             )
           ]),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          height: 900,
-          color: Colors.blueGrey.shade800,
-          // ignore: prefer_const_literals_to_create_immutables
-          child: Column(children: [
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              width: 150,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  primary: Colors.white,
-                  minimumSize: const Size(200, 45),
-                  backgroundColor: Colors.brown,
-                ),
-                child: const Text('Adicionar nova aula'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NovaAulaPage()),
-                  );
-                },
-              ),
-            ),
-            Text(
-              "Próximas aulas",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-            ),
-            const AulaWidget(
-                "Aula 4", " Descrição aula 4", "19/02/2022", "19:00"),
-            const AulaWidget(
-                "Aula 5", " Descrição aula 5", "26/02/2022", "19:00"),
-            const AulaWidget(
-                "Aula 6", " Descrição aula 6", "05/03/2022", "19:00"),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Aulas disponíveis para agendar",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-            ),
-            const AulaDispo("Aula 7", "Descrição da aula 7"),
-            const AulaDispo("Aula 8", "Descrição da aula 8"),
-          ]),
+
+      //BODY
+      ////
+      /////
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        color: Color.fromARGB(255, 165, 166, 167),
+        // ignore: prefer_const_literals_to_create_immutables
+        child: StreamBuilder<QuerySnapshot>(
+          //fonte de dados
+          stream: aulas.snapshots(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return const Center(child: Text('Não foi possível conectar.'));
+              case ConnectionState.waiting:
+                return const Center(child: CircularProgressIndicator());
+              default:
+                final dados = snapshot.requireData;
+                return ListView.builder(
+                  itemCount: dados.size,
+                  itemBuilder: (context, index) {
+                    return exibirDocumento(dados.docs[index]);
+                  },
+                );
+            }
+          },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.brown,
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NovaAulaPage()),
+          );
+        },
+      ),
+    );
+  }
+
+  exibirDocumento(item) {
+    String nomeAula = item.data()['nomeAula'];
+    String dsAula = item.data()['dsAula'];
+    String data = item.data()['data'];
+    String hora = item.data()['hora'];
+    return Container(
+      decoration: new BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Color.fromARGB(255, 255, 255, 255),
+      ),
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.12,
+      margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(children: [
+            Text(nomeAula,
+                style: const TextStyle(fontSize: 28, color: Colors.grey)),
+            Text(dsAula,
+                style: const TextStyle(fontSize: 18, color: Colors.grey)),
+          ]),
+          Row(children: [
+            Container(
+                padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                width: 100,
+                height: 90,
+                decoration: new BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(255, 2, 255, 78),
+                ),
+                child: Column(
+                  children: [
+                    Text(data, style: const TextStyle(fontSize: 16)),
+                    Text(hora, style: const TextStyle(fontSize: 26)),
+                  ],
+                )),
+            SizedBox(
+              width: 3,
+            ),
+            Container(
+              height: 90,
+              // ignore: unnecessary_new
+              decoration: new BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color.fromARGB(255, 255, 95, 2),
+              ),
+              child: Icon(
+                Icons.expand_more,
+                color: Color.fromARGB(255, 255, 255, 255),
+                size: 35,
+              ),
+            ),
+          ])
+        ],
       ),
     );
   }
