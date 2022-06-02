@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:appointment/pages/tarefas.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'login.dart';
@@ -14,6 +15,7 @@ class Sobre extends StatefulWidget {
 enum MenuItem {
   inicio,
   sobre,
+  tarefas,
   sair,
 }
 
@@ -42,6 +44,11 @@ class _SobreState extends State<Sobre> {
                       context,
                       MaterialPageRoute(builder: (context) => Sobre()),
                     );
+                  } else if (value == MenuItem.tarefas) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Tarefas()),
+                    );
                   } else if (value == MenuItem.sair) {
                     Navigator.push(
                       context,
@@ -54,6 +61,8 @@ class _SobreState extends State<Sobre> {
                           value: MenuItem.inicio, child: Text("Início")),
                       PopupMenuItem(
                           value: MenuItem.sobre, child: Text("Sobre")),
+                      PopupMenuItem(
+                          value: MenuItem.tarefas, child: Text("tarefas")),
                       PopupMenuItem(value: MenuItem.sair, child: Text("Sair")),
                     ])
           ]),

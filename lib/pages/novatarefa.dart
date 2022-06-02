@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 
 import 'widgets/mensagem.dart';
 
-class NovaAulaPage extends StatefulWidget {
-  const NovaAulaPage({Key? key}) : super(key: key);
+class NovaTarefaPage extends StatefulWidget {
+  const NovaTarefaPage({Key? key}) : super(key: key);
 
   @override
-  _NovaAulaPageState createState() => _NovaAulaPageState();
+  _NovaTarefaPageState createState() => _NovaTarefaPageState();
 }
 
 enum MenuItem {
@@ -23,35 +23,31 @@ enum MenuItem {
 }
 var nomeUsuario;
 
-class _NovaAulaPageState extends State<NovaAulaPage> {
-  var txtNomeAula = TextEditingController();
-  var txtDesc = TextEditingController();
-  var txtData = TextEditingController();
-  var txtHora = TextEditingController();
+class _NovaTarefaPageState extends State<NovaTarefaPage> {
+  var txtNomeTarefa = TextEditingController();
+  var txtDescTarefa = TextEditingController();
+  var txtDataEntrega = TextEditingController();
 
   //Retonar um documento pelo ID
   retornarDocumentoById(id) async {
     await FirebaseFirestore.instance
-        .collection('aulas')
+        .collection('tarefas')
         .doc(id)
         .get()
         .then((doc) {
-      txtNomeAula.text = doc.get('nomeAula');
-      txtDesc.text = doc.get('dsAula');
-      txtData.text = doc.get('data');
-      txtHora.text = doc.get('hora');
+      txtNomeTarefa.text = doc.get('nomeTarefa');
+      txtDescTarefa.text = doc.get('dsTarefa');
+      txtDataEntrega.text = doc.get('dataEntrega');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    //Recuperar o id do Café
     var id = ModalRoute.of(context)!.settings.arguments;
     if (id != null) {
-      if (txtNomeAula.text.isEmpty &&
-          txtDesc.text.isEmpty &&
-          txtData.text.isEmpty &&
-          txtHora.text.isEmpty) {
+      if (txtNomeTarefa.text.isEmpty &&
+          txtDescTarefa.text.isEmpty &&
+          txtDataEntrega.text.isEmpty) {
         retornarDocumentoById(id);
       }
     }
@@ -63,7 +59,7 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
             color: Color.fromARGB(255, 255, 95, 2),
             size: 30.0,
           ),
-          title: Text('Início'),
+          title: Text('Tarefas'),
           backgroundColor: Color.fromARGB(255, 0, 6, 97),
           actions: [
             Column(
@@ -100,7 +96,7 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
                           PopupMenuItem(
                               value: MenuItem.sobre, child: Text("Sobre")),
                           PopupMenuItem(
-                              value: MenuItem.sobre, child: Text("Tarefas")),
+                              value: MenuItem.tarefas, child: Text("Tarefas")),
                           PopupMenuItem(
                               value: MenuItem.sair, child: Text("Sair")),
                         ]),
@@ -126,13 +122,11 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
         padding: const EdgeInsets.all(50),
         child: ListView(
           children: [
-            campoTexto('Nome da aula', txtNomeAula),
+            campoTexto('Nome da tarefa', txtNomeTarefa),
             const SizedBox(height: 20),
-            campoTexto('Descrição', txtDesc),
+            campoTexto('Descrição da tarefa', txtDescTarefa),
             const SizedBox(height: 40),
-            campoTexto('Data', txtData),
-            const SizedBox(height: 40),
-            campoTexto('Hora', txtHora),
+            campoTexto('Data de entrega', txtDataEntrega),
             const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -148,26 +142,24 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
                     onPressed: () {
                       if (id == null) {
                         //Adicionar um novo documento
-                        FirebaseFirestore.instance.collection('aulas').add({
+                        FirebaseFirestore.instance.collection('tarefas').add({
                           "uid": FirebaseAuth.instance.currentUser!.uid,
-                          "nomeAula": txtNomeAula.text,
-                          "dsAula": txtDesc.text,
-                          "data": txtData.text,
-                          "hora": txtHora.text,
+                          "nomeTarefa": txtNomeTarefa.text,
+                          "dsTarefa": txtDescTarefa.text,
+                          "dataEntrega": txtDataEntrega.text,
                         });
-                        sucesso(context, 'Aula adicionado com sucesso.');
+                        sucesso(context, 'Tarefa adicionado com sucesso.');
                       } else {
                         FirebaseFirestore.instance
-                            .collection('aulas')
+                            .collection('tarefas')
                             .doc(id.toString())
                             .set({
                           "uid": FirebaseAuth.instance.currentUser!.uid,
-                          "nomeAula": txtNomeAula.text,
-                          "dsAula": txtDesc.text,
-                          "data": txtData.text,
-                          "hora": txtHora.text,
+                          "nomeTarefa": txtNomeTarefa.text,
+                          "dsTarefa": txtDescTarefa.text,
+                          "dataEntrega": txtDataEntrega.text,
                         });
-                        sucesso(context, 'Aula atualizada com sucesso.');
+                        sucesso(context, 'Tarefa atualizada com sucesso.');
                       }
 
                       Navigator.pop(context);

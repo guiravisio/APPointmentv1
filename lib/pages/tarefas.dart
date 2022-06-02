@@ -1,20 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:appointment/pages/novaaula.dart';
-import 'package:appointment/pages/tarefas.dart';
+import 'package:appointment/pages/novatarefa.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:appointment/pages/about.dart';
 import 'package:appointment/pages/widgets/aulafutura.dart';
 import 'package:flutter/material.dart';
 import 'package:appointment/pages/widgets/aulawidget.dart';
+import 'home.dart';
 import 'login.dart';
 import 'widgets/mensagem.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Tarefas extends StatefulWidget {
+  const Tarefas({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Tarefas> createState() => _TarefasState();
 }
 
 enum MenuItem {
@@ -24,15 +25,15 @@ enum MenuItem {
   sair,
 }
 
-class _HomeState extends State<Home> {
-  var aulas;
+class _TarefasState extends State<Tarefas> {
+  var tarefas;
   var nomeUsuario;
 
   @override
   void initState() {
     super.initState();
-    aulas = FirebaseFirestore.instance
-        .collection('aulas')
+    tarefas = FirebaseFirestore.instance
+        .collection('tarefas')
         .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
   }
 
@@ -61,11 +62,6 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Sobre()),
-                        );
-                      } else if (value == MenuItem.tarefas) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Tarefas()),
                         );
                       } else if (value == MenuItem.sair) {
                         FirebaseAuth.instance.signOut();
@@ -113,7 +109,7 @@ class _HomeState extends State<Home> {
         // ignore: prefer_const_literals_to_create_immutables
         child: StreamBuilder<QuerySnapshot>(
           //fonte de dados
-          stream: aulas.snapshots(),
+          stream: tarefas.snapshots(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
@@ -139,7 +135,7 @@ class _HomeState extends State<Home> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => NovaAulaPage()),
+            MaterialPageRoute(builder: (context) => NovaTarefaPage()),
           );
         },
       ),
@@ -147,10 +143,10 @@ class _HomeState extends State<Home> {
   }
 
   exibirDocumento(item) {
-    String nomeAula = item.data()['nomeAula'];
-    String dsAula = item.data()['dsAula'];
-    String data = item.data()['data'];
-    String hora = item.data()['hora'];
+    String nomeTarefa = item.data()['nomeTarefa'];
+    String dsTarefa = item.data()['dsTarefa'];
+    String dataEntrega = item.data()['dataEntrega'];
+
     return Container(
       decoration: new BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -164,11 +160,11 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(nomeAula,
+            Text(nomeTarefa,
                 style: TextStyle(fontSize: 18, color: Colors.grey.shade800)),
             SizedBox(
               width: MediaQuery.of(context).size.width * .5,
-              child: Text(dsAula,
+              child: Text(dsTarefa,
                   style: const TextStyle(fontSize: 12, color: Colors.grey),
                   overflow: TextOverflow.ellipsis),
             ),
@@ -184,8 +180,9 @@ class _HomeState extends State<Home> {
                 ),
                 child: Column(
                   children: [
-                    Text(data, style: const TextStyle(fontSize: 12)),
-                    Text(hora, style: const TextStyle(fontSize: 20)),
+                    Text("Entregar até: ",
+                        style: const TextStyle(fontSize: 12)),
+                    Text(dataEntrega, style: const TextStyle(fontSize: 12)),
                   ],
                 )),
             SizedBox(
@@ -205,7 +202,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     Navigator.pushNamed(
                       context,
-                      'inserir',
+                      'inserirtarefas',
                       arguments: item.id,
                     );
                   }),
