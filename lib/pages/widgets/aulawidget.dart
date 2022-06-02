@@ -27,7 +27,7 @@ class AulaWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(nomeAula,
                 style: const TextStyle(fontSize: 28, color: Colors.grey)),
             Text(subtitulo,

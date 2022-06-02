@@ -99,8 +99,8 @@ class _HomeState extends State<Home> {
       ////
       /////
       body: Container(
-        padding: const EdgeInsets.all(20),
-        color: Color.fromARGB(255, 165, 166, 167),
+        padding: const EdgeInsets.all(5),
+        color: Colors.blueGrey.shade800,
         // ignore: prefer_const_literals_to_create_immutables
         child: StreamBuilder<QuerySnapshot>(
           //fonte de dados
@@ -125,7 +125,7 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.brown,
+        backgroundColor: Color.fromARGB(255, 255, 95, 2),
         child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(
@@ -147,49 +147,59 @@ class _HomeState extends State<Home> {
         borderRadius: BorderRadius.circular(10),
         color: Color.fromARGB(255, 255, 255, 255),
       ),
-      width: MediaQuery.of(context).size.width * 0.9,
-      height: MediaQuery.of(context).size.height * 0.12,
+      width: MediaQuery.of(context).size.width * 0.95,
+      height: MediaQuery.of(context).size.height * 0.10,
       margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(nomeAula,
-                style: const TextStyle(fontSize: 28, color: Colors.grey)),
-            Text(dsAula,
-                style: const TextStyle(fontSize: 18, color: Colors.grey)),
+                style: TextStyle(fontSize: 18, color: Colors.grey.shade800)),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * .5,
+              child: Text(dsAula,
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                  overflow: TextOverflow.ellipsis),
+            ),
           ]),
           Row(children: [
             Container(
-                padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                width: 100,
-                height: 90,
+                padding: const EdgeInsets.all(3),
+                width: MediaQuery.of(context).size.width * 0.2,
+                height: MediaQuery.of(context).size.height * 0.2,
                 decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(255, 2, 255, 78),
+                  color: Color.fromARGB(255, 125, 241, 160),
                 ),
                 child: Column(
                   children: [
-                    Text(data, style: const TextStyle(fontSize: 16)),
-                    Text(hora, style: const TextStyle(fontSize: 26)),
+                    Text(data, style: const TextStyle(fontSize: 12)),
+                    Text(hora, style: const TextStyle(fontSize: 20)),
                   ],
                 )),
             SizedBox(
               width: 3,
             ),
-            Container(
-              height: 90,
-              // ignore: unnecessary_new
-              decoration: new BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color.fromARGB(255, 255, 95, 2),
-              ),
-              child: Icon(
-                Icons.expand_more,
-                color: Color.fromARGB(255, 255, 255, 255),
-                size: 35,
-              ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.1,
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    primary: Color.fromARGB(255, 0, 6, 97),
+                  ),
+                  child: Icon(
+                    Icons.edit_note,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      'inserir',
+                      arguments: item.id,
+                    );
+                  }),
             ),
           ])
         ],

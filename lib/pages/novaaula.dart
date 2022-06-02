@@ -112,7 +112,7 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
               ],
             )
           ]),
-      backgroundColor: Colors.brown[50],
+      backgroundColor: Colors.white30,
       body: Container(
         padding: const EdgeInsets.all(50),
         child: ListView(
@@ -132,9 +132,10 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
                   width: 150,
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      primary: Colors.brown.shade900,
+                      primary: Colors.white,
+                      backgroundColor: const Color.fromARGB(255, 0, 6, 97),
                     ),
-                    child: const Text('salvar'),
+                    child: const Text('Salvar'),
                     onPressed: () {
                       if (id == null) {
                         //Adicionar um novo documento
@@ -148,14 +149,14 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
                         sucesso(context, 'Aula adicionado com sucesso.');
                       } else {
                         FirebaseFirestore.instance
-                            .collection('cafes')
+                            .collection('aulas')
                             .doc(id.toString())
                             .set({
                           "uid": FirebaseAuth.instance.currentUser!.uid,
                           "nomeAula": txtNomeAula.text,
                           "dsAula": txtDesc.text,
-                          "data": txtDesc.text,
-                          "hora": txtDesc.text,
+                          "data": txtData.text,
+                          "hora": txtHora.text,
                         });
                         sucesso(context, 'Aula atualizada com sucesso.');
                       }
@@ -165,13 +166,17 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                SizedBox(
+                Container(
+                  decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Color.fromARGB(255, 255, 95, 2),
+                  ),
                   width: 150,
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        primary: Colors.brown.shade900,
+                        primary: Colors.white,
                       ),
-                      child: const Text('cancelar'),
+                      child: const Text('Cancelar'),
                       onPressed: () {
                         Navigator.pop(context);
                       }),
@@ -189,18 +194,19 @@ class _NovaAulaPageState extends State<NovaAulaPage> {
       controller: controller,
       obscureText: senha != null ? true : false,
       style: const TextStyle(
-        color: Colors.brown,
+        color: Colors.black,
         fontWeight: FontWeight.w300,
       ),
       decoration: InputDecoration(
-        prefixIconColor: Colors.brown,
+        prefixIconColor: Colors.black,
         labelText: texto,
-        labelStyle: const TextStyle(color: Colors.brown),
+        labelStyle: const TextStyle(color: Colors.black),
         border: const OutlineInputBorder(),
-        focusColor: Colors.brown,
+        fillColor: Colors.white,
+        focusColor: Colors.black,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.brown,
+            color: Colors.black,
             width: 0.0,
           ),
         ),

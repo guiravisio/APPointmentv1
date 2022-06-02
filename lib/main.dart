@@ -1,3 +1,4 @@
+import 'package:appointment/pages/novaaula.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
         'login': (context) => const FirstPageLogin(),
         'criar_conta': (context) => const Register(),
         'principal': (context) => const Home(),
+        'inserir': (context) => const NovaAulaPage(),
       },
     ),
   );
